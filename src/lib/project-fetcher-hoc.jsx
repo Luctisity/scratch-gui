@@ -106,52 +106,15 @@ const ProjectFetcherHOC = function (WrappedComponent) {
             this.props.vm.clear();
             this.props.vm.quit();
 
-            let assetPromise;
-            // In case running in node...
-            let projectUrl = typeof URLSearchParams === 'undefined' ?
-                null :
-                new URLSearchParams(location.search).get('project_url');
-            if (projectUrl) {
-                if (
-                    !projectUrl.startsWith('http:') &&
-                    !projectUrl.startsWith('https:') &&
-                    !projectUrl.startsWith('data:')
-                ) {
-                    projectUrl = `https://${projectUrl}`;
-                }
-                assetPromise = fetch(projectUrl)
-                    .then(r => {
-                        if (!r.ok) {
-                            throw new Error(`Request returned status ${r.status}`);
-                        }
-                        return r.arrayBuffer();
-                    })
-                    .then(buffer => ({data: buffer}));
-            } else {
-                // TW: Temporary hack for project tokens
-                assetPromise = fetchProjectToken(projectId)
-                    .then(token => {
-                        storage.setProjectToken(token);
-                        return storage.load(storage.AssetType.Project, projectId, storage.DataFormat.JSON)
-                            .catch(err => {
-                                throw new ProjectFetchError(`Could not load project: ${err}`);
-                            });
-                    });
-            }
-
-            return assetPromise
+            return storage
+                .load(storage.AssetType.Project, projectId, storage.DataFormat.JSON)
                 .then(projectAsset => {
                     if (projectAsset) {
                         this.props.onFetchedProjectData(projectAsset.data, loadingState);
-                    } else if (projectUrl) {
+                    } else {
                         // Treat failure to load as an error
                         // Throw to be caught by catch later on
                         throw new Error('Could not find project');
-                    } else {
-                        // We got a valid project token but no project data came back, so the token
-                        // has likely expired or the project is otherwise unavailable.
-                        // Throw to be caught by catch later on
-                        throw new ProjectFetchError('Could not find project');
                     }
                 })
                 .catch(err => {
@@ -172,6 +135,7 @@ const ProjectFetcherHOC = function (WrappedComponent) {
                 onProjectUnchanged,
                 projectHost,
                 projectId,
+                projectToken,
                 reduxProjectId,
                 setProjectId: setProjectIdProp,
                 /* eslint-enable no-unused-vars */
