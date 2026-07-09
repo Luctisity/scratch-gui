@@ -52,9 +52,9 @@ CloudVariablesToggler.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    username: state.scratchGui.tw.username,
-    enabled: state.scratchGui.tw.cloud,
-    canUseCloudVariables: isScratchDesktop() || !state.scratchGui.mode.hasEverEnteredEditor
+    //username: state.scratchGui.tw.username,
+    // enabled: state.scratchGui.tw.cloud,
+    //canUseCloudVariables: isScratchDesktop() || !state.scratchGui.mode.hasEverEnteredEditor
 });
 
 const mapDispatchToProps = dispatch => ({

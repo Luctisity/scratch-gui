@@ -295,7 +295,7 @@ const vmListenerHOC = function (WrappedComponent) {
         attachKeyboardEvents: true,
         onGreenFlag: () => ({})
     };
-    const mapStateToProps = state => ({
+    const mapStateToProps = (state, ownProps) => ({
         hasCloudVariables: state.scratchGui.tw.hasCloudVariables,
         isEditorObscured: (
             !state.scratchGui.mode.isPlayerOnly &&
@@ -314,8 +314,11 @@ const vmListenerHOC = function (WrappedComponent) {
         // Do not update the projectChanged state in fullscreen or player only mode
         shouldUpdateProjectChanged: !state.scratchGui.mode.isFullScreen && !state.scratchGui.mode.isPlayerOnly,
         vm: state.scratchGui.vm,
-        username: state.session && state.session.session && state.session.session.user ?
-            state.session.session.user.username : state.scratchGui.tw ? state.scratchGui.tw.username : ''
+        username: ownProps.username ?? (
+            state.session && state.session.session && state.session.session.user ?
+                state.session.session.user.username :
+                ''
+        )
     });
     const mapDispatchToProps = dispatch => ({
         onTargetsUpdate: data => {

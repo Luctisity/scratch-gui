@@ -300,23 +300,23 @@ const TWStateManager = function (WrappedComponent) {
                 this.props.vm.setInterpolation(true);
             }
 
-            if (urlParams.has('username')) {
-                const username = urlParams.get('username');
-                // Do not save username when loaded from URL
-                this.doNotPersistUsername = username;
-                this.props.onSetUsername(username);
-            } else {
-                const persistentUsername = this.props.isEmbedded ? null : getLocalStorage(USERNAME_KEY);
-                if (persistentUsername === null) {
-                    const randomUsername = generateRandomUsername();
-                    this.props.onSetUsername(randomUsername);
-                    if (this.props.isEmbedded) {
-                        this.doNotPersistUsername = randomUsername;
-                    }
-                } else {
-                    this.props.onSetUsername(persistentUsername);
-                }
-            }
+            // if (urlParams.has('username')) {
+            //     const username = urlParams.get('username');
+            //     // Do not save username when loaded from URL
+            //     this.doNotPersistUsername = username;
+            //     this.props.onSetUsername(username);
+            // } else {
+            //     const persistentUsername = this.props.isEmbedded ? null : getLocalStorage(USERNAME_KEY);
+            //     if (persistentUsername === null) {
+            //         const randomUsername = generateRandomUsername();
+            //         this.props.onSetUsername(randomUsername);
+            //         if (this.props.isEmbedded) {
+            //             this.doNotPersistUsername = randomUsername;
+            //         }
+            //     } else {
+            //         this.props.onSetUsername(persistentUsername);
+            //     }
+            // }
 
             if (urlParams.has('hqpen')) {
                 this.props.vm.renderer.setUseHighQualityRender(true);
@@ -590,7 +590,7 @@ const TWStateManager = function (WrappedComponent) {
         framerate: state.scratchGui.tw.framerate,
         interpolation: state.scratchGui.tw.interpolation,
         turbo: state.scratchGui.vmStatus.turbo,
-        username: state.scratchGui.tw.username,
+        //username: state.scratchGui.tw.username,
         vm: state.scratchGui.vm
     });
     const mapDispatchToProps = dispatch => ({
