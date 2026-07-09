@@ -52,11 +52,11 @@ ActualAuthorInfo.propTypes = {
     username: PropTypes.oneOfType([PropTypes.string, PropTypes.bool])
 };
 
-const AuthorInfo = ({projectId, ...props}) => (
+const AuthorInfo = ({projectId, projectsBaseUrl, ...props}) => (
     projectId ? (
         <a
             className={styles.link}
-            href={`https://scratch.mit.edu/projects/${projectId}`}
+            href={`${projectsBaseUrl ?? 'https://scratch.mit.edu/projects'}/${projectId}`}
             target="_blank"
             rel="noreferrer"
         >

@@ -37,6 +37,7 @@ import vmManagerHOC from '../lib/vm-manager-hoc.jsx';
 import cloudManagerHOC from '../lib/cloud-manager-hoc.jsx';
 
 import GUIComponent from '../components/gui/gui.jsx';
+import {AccountMenuOptionsPropTypes} from '../lib/account-menu-options';
 import {setIsScratchDesktop} from '../lib/isScratchDesktop.js';
 import TWFullScreenResizerHOC from '../lib/tw-fullscreen-resizer-hoc.jsx';
 import TWThemeManagerHOC from './tw-theme-manager-hoc.jsx';
@@ -110,6 +111,7 @@ class GUI extends React.Component {
 }
 
 GUI.propTypes = {
+    accountMenuOptions: AccountMenuOptionsPropTypes,
     assetHost: PropTypes.string,
     children: PropTypes.node,
     cloudHost: PropTypes.string,
@@ -130,6 +132,8 @@ GUI.propTypes = {
     onUpdateProjectId: PropTypes.func,
     onVmInit: PropTypes.func,
     projectHost: PropTypes.string,
+    username: PropTypes.string,
+    userOwnsProject: PropTypes.bool,
     projectId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     telemetryModalVisible: PropTypes.bool,
     vm: PropTypes.instanceOf(VM).isRequired
