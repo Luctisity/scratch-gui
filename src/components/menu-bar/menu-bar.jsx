@@ -488,8 +488,6 @@ class MenuBar extends React.Component {
         const aboutButton = this.buildAboutMenu(this.props.onClickAbout);
         const menuOpts = this.props.accountMenuOptions;
 
-        console.log('[DEBUG]', menuOpts, this.props);
-
         const menuBar = (
             <Box
                 className={classNames(
