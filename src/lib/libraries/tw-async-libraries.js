@@ -1,21 +1,26 @@
-const asyncLibrary = callback => {
-    let data = null;
-    return () => {
-        if (data) return data;
-        return callback()
-            .then(mod => (data = mod.default));
-    };
-};
+const ASSET_LIBRARY_URL = 'https://cdn.kanava.ucrash.fun/luctisity/assetlib'; // TODO: make this not hard-coded
 
-export const getBackdropLibrary = asyncLibrary(
-    () => import(/* webpackChunkName: "library-backdrops" */ './backdrops.json')
-);
-export const getCostumeLibrary = asyncLibrary(
-    () => import(/* webpackChunkName: "library-costumes" */ './costumes.json')
-);
-export const getSoundLibrary = asyncLibrary(
-    () => import(/* webpackChunkName: "library-sounds" */ './sounds.json')
-);
-export const getSpriteLibrary = asyncLibrary(
-    () => import(/* webpackChunkName: "library-sprites" */ './sprites.json')
-);
+const libraryCache = {
+    backdrops: null,
+    costumes: null,
+    sounds: null,
+    sprites: null,
+}
+
+const getLibraryManifest = async type => {
+    if (libraryCache[type] != null) {
+        return libraryCache[type];
+    }
+    const response = await fetch(`${ASSET_LIBRARY_URL}/${type}/manifest.json`);
+    if (!response.ok) {
+        return [];
+    }
+    const json = await response.json();
+    libraryCache[type] = json;
+    return json;
+}
+
+export const getBackdropLibrary = () => getLibraryManifest('backdrops');
+export const getCostumeLibrary = () => getLibraryManifest('costumes');
+export const getSoundLibrary = () => getLibraryManifest('sounds');
+export const getSpriteLibrary = () => getLibraryManifest('sprites');
