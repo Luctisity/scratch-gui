@@ -45,6 +45,7 @@ const TargetPane = ({
     stageSize,
     sprites,
     vm,
+    assetPreviewHost,
     ...componentProps
 }) => (
     <div
@@ -95,6 +96,7 @@ const TargetPane = ({
                         vm={vm}
                         onActivateBlocksTab={onActivateBlocksTab}
                         onRequestClose={onRequestCloseSpriteLibrary}
+                        assetPreviewHost={assetPreviewHost}
                     />
                 ) : null}
             </div>

@@ -192,12 +192,14 @@ class SoundLibrary extends React.PureComponent {
                 onItemMouseLeave={this.handleItemMouseLeave}
                 onItemSelected={this.handleItemSelected}
                 onRequestClose={this.props.onRequestClose}
+                assetPreviewHost={this.props.assetPreviewHost}
             />
         );
     }
 }
 
 SoundLibrary.propTypes = {
+    assetPreviewHost: PropTypes.string,
     intl: intlShape.isRequired,
     isRtl: PropTypes.bool,
     onNewSound: PropTypes.func.isRequired,

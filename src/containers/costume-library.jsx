@@ -54,12 +54,14 @@ class CostumeLibrary extends React.PureComponent {
                 removedTrademarks
                 onItemSelected={this.handleItemSelected}
                 onRequestClose={this.props.onRequestClose}
+                assetPreviewHost={this.props.assetPreviewHost}
             />
         );
     }
 }
 
 CostumeLibrary.propTypes = {
+    assetPreviewHost: PropTypes.string,
     intl: intlShape.isRequired,
     onRequestClose: PropTypes.func,
     vm: PropTypes.instanceOf(VM).isRequired

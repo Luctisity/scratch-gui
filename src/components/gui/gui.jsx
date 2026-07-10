@@ -77,6 +77,7 @@ const GUIComponent = props => {
         accountNavOpen,
         activeTabIndex,
         alertsVisible,
+        assetPreviewHost,
         authorId,
         authorThumbnailUrl,
         authorUsername,
@@ -280,12 +281,14 @@ const GUIComponent = props => {
                     <CostumeLibrary
                         vm={vm}
                         onRequestClose={onRequestCloseCostumeLibrary}
+                        assetPreviewHost={assetPreviewHost}
                     />
                 ) : null}
                 {backdropLibraryVisible ? (
                     <BackdropLibrary
                         vm={vm}
                         onRequestClose={onRequestCloseBackdropLibrary}
+                        assetPreviewHost={assetPreviewHost}
                     />
                 ) : null}
                 <MenuBar
@@ -430,7 +433,7 @@ const GUIComponent = props => {
                                     /> : null}
                                 </TabPanel>
                                 <TabPanel className={tabClassNames.tabPanel}>
-                                    {soundsTabVisible ? <SoundTab vm={vm} /> : null}
+                                    {soundsTabVisible ? <SoundTab vm={vm} assetPreviewHost={assetPreviewHost} /> : null}
                                 </TabPanel>
                             </Tabs>
                             {backpackVisible ? (
@@ -452,6 +455,7 @@ const GUIComponent = props => {
                                 <TargetPane
                                     stageSize={stageSize}
                                     vm={vm}
+                                    assetPreviewHost={assetPreviewHost}
                                 />
                             </Box>
                         </Box>
@@ -467,6 +471,7 @@ GUIComponent.propTypes = {
     accountNavOpen: PropTypes.bool,
     accountMenuOptions: AccountMenuOptionsPropTypes,
     activeTabIndex: PropTypes.number,
+    assetPreviewHost: PropTypes.string,
     authorId: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]), // can be false
     authorThumbnailUrl: PropTypes.string,
     authorUsername: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]), // can be false
@@ -552,6 +557,7 @@ GUIComponent.propTypes = {
     vm: PropTypes.instanceOf(VM).isRequired
 };
 GUIComponent.defaultProps = {
+    assetPreviewHost: 'https://cdn.assets.scratch.mit.edu/internalapi',
     backpackHost: null,
     backpackVisible: false,
     basePath: './',

@@ -54,12 +54,14 @@ class BackdropLibrary extends React.Component {
                 title={this.props.intl.formatMessage(messages.libraryTitle)}
                 onItemSelected={this.handleItemSelect}
                 onRequestClose={this.props.onRequestClose}
+                assetPreviewHost={this.props.assetPreviewHost}
             />
         );
     }
 }
 
 BackdropLibrary.propTypes = {
+    assetPreviewHost: PropTypes.string,
     intl: intlShape.isRequired,
     onRequestClose: PropTypes.func,
     vm: PropTypes.instanceOf(VM).isRequired

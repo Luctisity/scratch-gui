@@ -52,12 +52,14 @@ class SpriteLibrary extends React.PureComponent {
                 removedTrademarks
                 onItemSelected={this.handleItemSelect}
                 onRequestClose={this.props.onRequestClose}
+                assetPreviewHost={this.props.assetPreviewHost}
             />
         );
     }
 }
 
 SpriteLibrary.propTypes = {
+    assetPreviewHost: PropTypes.string,
     intl: intlShape.isRequired,
     onActivateBlocksTab: PropTypes.func.isRequired,
     onRequestClose: PropTypes.func,

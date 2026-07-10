@@ -278,6 +278,7 @@ class SoundTab extends React.Component {
                         vm={this.props.vm}
                         onNewSound={this.handleNewSound}
                         onRequestClose={this.props.onRequestCloseSoundLibrary}
+                        assetPreviewHost={this.props.assetPreviewHost}
                     />
                 ) : null}
             </AssetPanel>
