@@ -796,16 +796,7 @@ class MenuBar extends React.Component {
                                             )}
                                         </MenuItem>
                                     )}</FramerateChanger>
-                                    <ChangeUsername>{changeUsername => (
-                                        <MenuItem onClick={changeUsername}>
-                                            <FormattedMessage
-                                                defaultMessage="Change Username"
-                                                description="Menu bar item for changing the username"
-                                                id="tw.menuBar.changeUsername"
-                                            />
-                                        </MenuItem>
-                                    )}</ChangeUsername>
-                                    <CloudVariablesToggler>{(toggleCloudVariables, {enabled, canUseCloudVariables}) => (
+                                    {/* <CloudVariablesToggler>{(toggleCloudVariables, {enabled, canUseCloudVariables}) => (
                                         <MenuItem
                                             className={classNames({[styles.disabled]: !canUseCloudVariables})}
                                             onClick={toggleCloudVariables}
@@ -833,7 +824,7 @@ class MenuBar extends React.Component {
                                                 />
                                             )}
                                         </MenuItem>
-                                    )}</CloudVariablesToggler>
+                                    )}</CloudVariablesToggler> */}
                                 </MenuSection>
                                 <MenuSection>
                                     <MenuItem onClick={this.props.onClickSettingsModal}>
@@ -890,6 +881,27 @@ class MenuBar extends React.Component {
                             </MenuLabel>
                         )}
 
+                        {this.props.onClickSettingsModal && (
+                            <div
+                                className={classNames(styles.menuBarItem, styles.hoverable)}
+                                onClick={this.props.onClickSettingsModal}
+                            >
+                                <img
+                                    src={advancedIcon}
+                                    draggable={false}
+                                    width={20}
+                                    height={20}
+                                />
+                                <span className={styles.collapsibleLabel}>
+                                    <FormattedMessage
+                                        defaultMessage="Project"
+                                        description="Button to open advanced settings menu"
+                                        id="tw.gui.defaultProjectTitle"
+                                    />
+                                </span>
+                            </div>
+                        )}
+
                         {this.props.onClickAddonSettings && (
                             <div
                                 className={classNames(styles.menuBarItem, styles.hoverable)}
@@ -906,26 +918,6 @@ class MenuBar extends React.Component {
                                         defaultMessage="Addons"
                                         description="Button to open addon settings"
                                         id="tw.menuBar.addons"
-                                    />
-                                </span>
-                            </div>
-                        )}
-                        {this.props.onClickSettingsModal && (
-                            <div
-                                className={classNames(styles.menuBarItem, styles.hoverable)}
-                                onClick={this.props.onClickSettingsModal}
-                            >
-                                <img
-                                    src={advancedIcon}
-                                    draggable={false}
-                                    width={20}
-                                    height={20}
-                                />
-                                <span className={styles.collapsibleLabel}>
-                                    <FormattedMessage
-                                        defaultMessage="Advanced"
-                                        description="Button to open advanced settings menu"
-                                        id="tw.menuBar.advanced"
                                     />
                                 </span>
                             </div>
