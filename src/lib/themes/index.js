@@ -6,7 +6,7 @@ import * as accentRed from './accent/red';
 import * as accentRainbow from './accent/rainbow';
 
 import * as guiLight from './gui/light';
-import * as guiDark from './gui/dark';
+import * as guiDark from './gui/darkLuct';
 
 import * as blocksThree from './blocks/three';
 import * as blocksHighContrast from './blocks/high-contrast';
