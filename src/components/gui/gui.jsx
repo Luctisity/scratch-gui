@@ -77,6 +77,7 @@ const GUIComponent = props => {
         accountNavOpen,
         activeTabIndex,
         alertsVisible,
+        allowedExtensions,
         assetPreviewHost,
         authorId,
         authorThumbnailUrl,
@@ -408,6 +409,7 @@ const GUIComponent = props => {
                                             onOpenCustomExtensionModal={onOpenCustomExtensionModal}
                                             theme={theme}
                                             vm={vm}
+                                            allowedExtensions={allowedExtensions}
                                         />
                                     </Box>
                                     <Box className={styles.extensionButtonContainer}>
@@ -471,6 +473,7 @@ GUIComponent.propTypes = {
     accountNavOpen: PropTypes.bool,
     accountMenuOptions: AccountMenuOptionsPropTypes,
     activeTabIndex: PropTypes.number,
+    allowedExtensions: PropTypes.arrayOf(PropTypes.string),
     assetPreviewHost: PropTypes.string,
     authorId: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]), // can be false
     authorThumbnailUrl: PropTypes.string,

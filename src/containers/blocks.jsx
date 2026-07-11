@@ -719,6 +719,7 @@ class Blocks extends React.Component {
                         onEnableProcedureReturns={this.handleEnableProcedureReturns}
                         onRequestClose={onRequestCloseExtensionLibrary}
                         onOpenCustomExtensionModal={onOpenCustomExtensionModal || reduxOnOpenCustomExtensionModal}
+                        allowedExtensions={this.props.allowedExtensions}
                     />
                 ) : null}
                 {customProceduresVisible ? (

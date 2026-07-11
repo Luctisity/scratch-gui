@@ -41,19 +41,28 @@ const translateGalleryItem = (extension, locale) => ({
 
 let cachedGallery = null;
 
-const fetchLibrary = async () => {
+const fetchLibrary = async (allowedExtensions) => {
     const res = await fetch('https://extensions.turbowarp.org/generated-metadata/extensions-v0.json');
     if (!res.ok) {
         throw new Error(`HTTP status ${res.status}`);
     }
     const data = await res.json();
-    return data.extensions.map(extension => ({
+
+    const getExtensionUrl = slug => `https://extensions.turbowarp.org/${slug}.js`;
+
+    const extensions = data.extensions.filter(extension => {
+        if (!allowedExtensions) return true;
+        if (allowedExtensions.includes(getExtensionUrl(extension.slug))) return true;
+        return false;
+    });
+
+    return extensions.map(extension => ({
         name: extension.name,
         nameTranslations: extension.nameTranslations || {},
         description: extension.description,
         descriptionTranslations: extension.descriptionTranslations || {},
         extensionId: extension.id,
-        extensionURL: `https://extensions.turbowarp.org/${extension.slug}.js`,
+        extensionURL: getExtensionUrl(extension.slug),
         iconURL: `https://extensions.turbowarp.org/${extension.image || 'images/unknown.svg'}`,
         tags: ['tw'],
         credits: [
@@ -104,7 +113,7 @@ class ExtensionLibrary extends React.PureComponent {
                 });
             }, 750);
 
-            fetchLibrary()
+            fetchLibrary(this.props.allowedExtensions)
                 .then(gallery => {
                     cachedGallery = gallery;
                     this.setState({
@@ -194,6 +203,7 @@ class ExtensionLibrary extends React.PureComponent {
 }
 
 ExtensionLibrary.propTypes = {
+    allowedExtensions: PropTypes.arrayOf(PropTypes.string),
     intl: intlShape.isRequired,
     onCategorySelected: PropTypes.func,
     onEnableProcedureReturns: PropTypes.func,
