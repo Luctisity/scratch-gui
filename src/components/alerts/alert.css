@@ -5,9 +5,10 @@
 .alert {
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     overflow: hidden;
-    justify-content: flex-start;
+    justify-content: space-between;
     border-radius: $space;
     padding-top: .875rem;
     padding-bottom: .875rem;
@@ -53,6 +54,13 @@
     display: flex;
     align-items: center;
     padding-right: .5rem;
+}
+
+.alert-reason {
+    color: #555;
+    font-weight: 600;
+    font-size: .8125rem;
+    width: 100%;
 }
 
 .alert-buttons {

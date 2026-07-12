@@ -17,6 +17,7 @@ const closeButtonColors = {
 
 const AlertComponent = ({
     content,
+    error,
     closeButton,
     extensionName,
     iconSpinner,
@@ -115,6 +116,7 @@ const AlertComponent = ({
                 </Box>
             )}
         </div>
+        { error && <span className={styles.alertReason}>{error}</span> }
     </Box>
 );
 

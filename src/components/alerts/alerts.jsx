@@ -20,6 +20,7 @@ const AlertsComponent = ({
                 <Alert
                     closeButton={a.closeButton}
                     content={a.content}
+                    error={a.error}
                     extensionId={a.extensionId}
                     extensionName={a.extensionName}
                     iconSpinner={a.iconSpinner}
