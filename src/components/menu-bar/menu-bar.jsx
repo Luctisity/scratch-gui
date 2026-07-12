@@ -497,6 +497,21 @@ class MenuBar extends React.Component {
             >
                 <div className={styles.mainMenu}>
                     <div className={styles.fileGroup}>
+                        <div
+                            className={classNames(styles.menuBarItem)}
+                            onClick={this.props.onClickLogo}
+                        >
+                            <img
+                                id="logo_img"
+                                alt="Luctisity"
+                                className={classNames(styles.scratchLogo, {
+                                    [styles.clickable]: typeof this.props.onClickLogo !== 'undefined'
+                                })}
+                                draggable={false}
+                                src={this.props.logo}
+                            />
+                        </div>
+
                         {this.props.errors.length > 0 && <div>
                             <MenuLabel
                                 open={this.props.errorsMenuOpen}

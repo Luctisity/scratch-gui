@@ -46,12 +46,20 @@
     opacity: 0;
 }
 .scratch-logo {
-    height:  1.6rem;
+    margin-left: 0.8rem;
+    margin-right: 0.2rem;
+    height:  1.4rem;
     vertical-align: middle;
 }
 
 .scratch-logo.clickable {
     cursor: pointer;
+    scale: 1;
+    transition: scale 0.1s ease;
+}
+.scratch-logo.clickable:hover {
+    scale: 1.06;
+    filter: brightness(1.25);
 }
 
 .menu-bar-item {
