@@ -7,7 +7,7 @@ const guiColors = {
 
     'ui-modal-overlay': '#333333aa',
     'ui-modal-background': '#060317',
-    'ui-modal-foreground': '#e0d6fc',
+    'ui-modal-foreground': '#dee0ff',
     'ui-modal-header-background': '#151329',
     'ui-modal-header-foreground': '#ffffff',
 
@@ -32,7 +32,7 @@ const guiColors = {
     'fullscreen-accent': '#060317',
 
     'page-background': '#060317',
-    'page-foreground': '#e0d6fc',
+    'page-foreground': '#dee0ff',
 
     'project-title-inactive': 'var(--ui-secondary)',
     'project-title-hover': '#c2a8fe3f',
@@ -57,10 +57,10 @@ const blockColors = {
     scrollbar: '#6a5e87',
     valueReportBackground: '#181729',
     valueReportBorder: '#48425f',
-    valueReportForeground: '#e0d6fc',
+    valueReportForeground: '#dee0ff',
     contextMenuBackground: '#060317',
     contextMenuBorder: '#a78bdc26',
-    contextMenuForeground: '#e0d6fc',
+    contextMenuForeground: '#dee0ff',
     contextMenuActiveBackground: '#2e2e2e',
     contextMenuDisabledForeground: '#6a5e87',
     flyoutLabelColor: '#c8c1f4',
