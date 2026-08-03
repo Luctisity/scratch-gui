@@ -1,4 +1,4 @@
-const ASSET_LIBRARY_URL = 'https://cdn.kanava.ucrash.fun/luctisity/assetlib'; // TODO: make this not hard-coded
+const ASSET_LIBRARY_URL = 'https://cdn.kanava.azzie.lol/luctisity/assetlib'; // TODO: make this not hard-coded
 
 const libraryCache = {
     backdrops: null,
