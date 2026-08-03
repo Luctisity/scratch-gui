@@ -156,6 +156,13 @@ const ProjectSaverHOC = function (WrappedComponent) {
             return props.canCreateNew && props.isShowingWithoutId;
         }
         updateProjectToStorage () {
+            // skip saving, if updating before copy
+            if (this.props.loadingState === 'UPDATING_BEFORE_COPY') {
+                this.props.onUpdatedProject(this.props.loadingState);
+                this.props.onShowSaveSuccessAlert();
+                return;
+            }
+
             this.props.onShowSavingAlert();
             return this.storeProject(this.props.reduxProjectId)
                 .then(() => {
@@ -189,7 +196,7 @@ const ProjectSaverHOC = function (WrappedComponent) {
                 title: this.props.reduxProjectTitle
             })
                 .then(response => {
-                    this.props.onCreatedProject(response.id.toString(), this.props.loadingState);
+                    this.props.onCreatedProject(response.id?.toString(), this.props.loadingState);
                     this.props.onShowCopySuccessAlert();
                 })
                 .catch(err => {
