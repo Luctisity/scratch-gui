@@ -44,10 +44,12 @@ const reducer = function (state, action) {
     switch (action.type) {
     case SHOW_ALERT: { // intended to show standard and inline alerts, but not extensions
         const alertId = action.alertId;
+        const error = action.error;
         if (alertId) {
             const newAlert = {
                 alertId: alertId,
-                level: AlertLevels.WARN // default level
+                level: AlertLevels.WARN, // default level
+                error,
             };
             const alertData = alertsData.find(thisAlertData => thisAlertData.alertId === alertId);
             if (alertData) {
@@ -166,12 +168,14 @@ const closeAlertWithId = function (alertId) {
  * Action creator to show an alert with the given alertId.
  *
  * @param {string} alertId - id string of the alert to show
+ * @param {string} error - optional descriptive error
  * @return {object} - an object to be passed to the reducer.
  */
-const showStandardAlert = function (alertId) {
+const showStandardAlert = function (alertId, error) {
     return {
         type: SHOW_ALERT,
-        alertId
+        alertId,
+        error,
     };
 };
 

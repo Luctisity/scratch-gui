@@ -151,7 +151,8 @@ const cloudManagerHOC = function (WrappedComponent) {
                 cloudVariablesDisabledByUser,
                 onSetReduxCloudHost,
                 projectId,
-                username,
+                // Intentionally propagating this one since it's used in MenuBar
+                // username,
                 hasCloudPermission,
                 isShowingWithId,
                 onShowCloudInfo,

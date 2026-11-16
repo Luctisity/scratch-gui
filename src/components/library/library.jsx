@@ -309,6 +309,7 @@ class LibraryComponent extends React.Component {
                             <Separator key={index} />
                         ) : (
                             <LibraryItem
+                                assetPreviewHost={this.props.assetPreviewHost}
                                 bluetoothRequired={dataItem.bluetoothRequired}
                                 collaborator={dataItem.collaborator}
                                 description={dataItem.description}
@@ -343,14 +344,6 @@ class LibraryComponent extends React.Component {
                             />
                         )
                     ))}
-                    {filteredData && this.props.removedTrademarks && (
-                        <React.Fragment>
-                            {filteredData.length > 0 && (
-                                <Separator />
-                            )}
-                            <RemovedTrademarks />
-                        </React.Fragment>
-                    )}
                     {!filteredData && (
                         <div className={styles.spinnerWrapper}>
                             <Spinner
@@ -366,6 +359,7 @@ class LibraryComponent extends React.Component {
 }
 
 LibraryComponent.propTypes = {
+    assetPreviewHost: PropTypes.string,
     data: PropTypes.oneOfType([
         PropTypes.arrayOf(PropTypes.oneOfType([
             /* eslint-disable react/no-unused-prop-types, lines-around-comment */
@@ -402,7 +396,8 @@ LibraryComponent.propTypes = {
 LibraryComponent.defaultProps = {
     filterable: true,
     persistableKey: 'name',
-    showPlayButton: false
+    showPlayButton: false,
+    assetPreviewHost: 'https://cdn.assets.scratch.mit.edu/internalapi'
 };
 
 export default injectIntl(LibraryComponent);

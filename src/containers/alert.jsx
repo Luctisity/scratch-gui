@@ -27,6 +27,7 @@ class Alert extends React.Component {
         const {
             closeButton,
             content,
+            error,
             extensionName,
             index, // eslint-disable-line no-unused-vars
             level,
@@ -43,6 +44,7 @@ class Alert extends React.Component {
                 <AlertComponent
                     closeButton={closeButton}
                     content={content}
+                    error={error}
                     extensionName={extensionName}
                     iconSpinner={iconSpinner}
                     iconURL={iconURL}

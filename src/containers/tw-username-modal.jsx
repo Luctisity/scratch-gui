@@ -75,8 +75,8 @@ UsernameModal.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    username: state.scratchGui.tw.username,
-    usernameInvalid: state.scratchGui.tw.usernameInvalid
+    //username: state.scratchGui.tw.username,
+    //usernameInvalid: state.scratchGui.tw.usernameInvalid
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -2194,7 +2194,7 @@
         "blocks": {}
     },
     {
-        "name": "Champ99",
+        "name": "Nightly-sou",
         "tags": [
             "people",
             "dance"
@@ -2204,7 +2204,7 @@
         "costumes": [
             {
                 "assetId": "7b073f47fbd9421e0d60daacc157f506",
-                "name": "champ99-a",
+                "name": "Nightly-sou-a",
                 "bitmapResolution": 2,
                 "md5ext": "7b073f47fbd9421e0d60daacc157f506.png",
                 "dataFormat": "png",
@@ -2213,7 +2213,7 @@
             },
             {
                 "assetId": "d6ae13605610aa008d48b0c8b25a57d3",
-                "name": "champ99-b",
+                "name": "Nightly-sou-b",
                 "bitmapResolution": 2,
                 "md5ext": "d6ae13605610aa008d48b0c8b25a57d3.png",
                 "dataFormat": "png",
@@ -2222,7 +2222,7 @@
             },
             {
                 "assetId": "26fdff424232926001d20041c3d5673b",
-                "name": "champ99-c",
+                "name": "Nightly-sou-c",
                 "bitmapResolution": 2,
                 "md5ext": "26fdff424232926001d20041c3d5673b.png",
                 "dataFormat": "png",
@@ -2231,7 +2231,7 @@
             },
             {
                 "assetId": "a28ffc2b129fb359ff22c79c48341267",
-                "name": "champ99-d",
+                "name": "Nightly-sou-d",
                 "bitmapResolution": 2,
                 "md5ext": "a28ffc2b129fb359ff22c79c48341267.png",
                 "dataFormat": "png",
@@ -2240,7 +2240,7 @@
             },
             {
                 "assetId": "56f3220fa82d99dcfc7d27d433ed01e4",
-                "name": "champ99-e",
+                "name": "Nightly-sou-e",
                 "bitmapResolution": 2,
                 "md5ext": "56f3220fa82d99dcfc7d27d433ed01e4.png",
                 "dataFormat": "png",
@@ -2249,7 +2249,7 @@
             },
             {
                 "assetId": "68453506ae4b6b60a3fc6817ba39d492",
-                "name": "champ99-f",
+                "name": "Nightly-sou-f",
                 "bitmapResolution": 2,
                 "md5ext": "68453506ae4b6b60a3fc6817ba39d492.png",
                 "dataFormat": "png",
@@ -2258,7 +2258,7 @@
             },
             {
                 "assetId": "20318b14a332fd618ec91e7c1de8be9a",
-                "name": "champ99-g",
+                "name": "Nightly-sou-g",
                 "bitmapResolution": 2,
                 "md5ext": "20318b14a332fd618ec91e7c1de8be9a.png",
                 "dataFormat": "png",

@@ -34,6 +34,9 @@ import {
     projectError
 } from '../reducers/project-state';
 
+// TODO: make this configurable
+const MAX_ASSET_SIZE = 1024 * 1024 * 5; // 5MB
+
 /**
  * Higher Order Component to provide behavior for saving projects.
  * @param {React.Component} WrappedComponent the component to add project saving functionality to
@@ -153,6 +156,13 @@ const ProjectSaverHOC = function (WrappedComponent) {
             return props.canCreateNew && props.isShowingWithoutId;
         }
         updateProjectToStorage () {
+            // skip saving, if updating before copy
+            if (this.props.loadingState === 'UPDATING_BEFORE_COPY') {
+                this.props.onUpdatedProject(this.props.loadingState);
+                this.props.onShowSaveSuccessAlert();
+                return;
+            }
+
             this.props.onShowSavingAlert();
             return this.storeProject(this.props.reduxProjectId)
                 .then(() => {
@@ -164,7 +174,7 @@ const ProjectSaverHOC = function (WrappedComponent) {
                 .catch(err => {
                     // Always show the savingError alert because it gives the
                     // user the chance to download or retry the save manually.
-                    this.props.onShowAlert('savingError');
+                    this.props.onShowAlert('savingError', err.message);
                     this.props.onProjectError(err);
                 });
         }
@@ -174,7 +184,7 @@ const ProjectSaverHOC = function (WrappedComponent) {
                     this.props.onCreatedProject(response.id.toString(), this.props.loadingState);
                 })
                 .catch(err => {
-                    this.props.onShowAlert('creatingError');
+                    this.props.onShowAlert('creatingError', err.message);
                     this.props.onProjectError(err);
                 });
         }
@@ -186,11 +196,11 @@ const ProjectSaverHOC = function (WrappedComponent) {
                 title: this.props.reduxProjectTitle
             })
                 .then(response => {
-                    this.props.onCreatedProject(response.id.toString(), this.props.loadingState);
+                    this.props.onCreatedProject(response.id?.toString(), this.props.loadingState);
                     this.props.onShowCopySuccessAlert();
                 })
                 .catch(err => {
-                    this.props.onShowAlert('creatingError');
+                    this.props.onShowAlert('creatingError', err.message);
                     this.props.onProjectError(err);
                 });
         }
@@ -206,7 +216,7 @@ const ProjectSaverHOC = function (WrappedComponent) {
                     this.props.onShowRemixSuccessAlert();
                 })
                 .catch(err => {
-                    this.props.onShowAlert('creatingError');
+                    this.props.onShowAlert('creatingError', err.message);
                     this.props.onProjectError(err);
                 });
         }
@@ -217,6 +227,13 @@ const ProjectSaverHOC = function (WrappedComponent) {
          * @param {?object} requestParams - object of params to add to request body
          */
         storeProject (projectId, requestParams) {
+            if (this.props.vm.assets.some(asset => asset.data.length > MAX_ASSET_SIZE)) {
+                return Promise.reject({
+                    status: 'error',
+                    message: `One of your assets (likely a sound or an image) is more than ${Math.round(MAX_ASSET_SIZE / 1024 / 1024)}MB. Please reduce the size of your assets and try again.`,
+                });
+            }
+
             requestParams = requestParams || {};
             this.clearAutoSaveTimeout();
             // Serialize VM state now before embarking on
@@ -241,11 +258,17 @@ const ProjectSaverHOC = function (WrappedComponent) {
                             return Promise.reject(response.code);
                         }
                         asset.clean = true;
+                    }).catch(err => {
+                        throw err;
                     })
                 )
             )
                 .then(() => this.props.onUpdateProjectData(projectId, savedVMState, requestParams))
                 .then(response => {
+                    if (response.status === 'error') {
+                        throw new Error(response.message ?? response.error.toString());
+                    }
+
                     this.props.onSetProjectUnchanged();
                     const id = response.id.toString();
                     if (id && this.props.onUpdateProjectThumbnail) {
@@ -433,7 +456,7 @@ const ProjectSaverHOC = function (WrappedComponent) {
         onCreateProject: () => dispatch(createProject()),
         onProjectError: error => dispatch(projectError(error)),
         onSetProjectUnchanged: () => dispatch(setProjectUnchanged()),
-        onShowAlert: alertType => dispatch(showStandardAlert(alertType)),
+        onShowAlert: (alertType, error) => dispatch(showStandardAlert(alertType, error)),
         onShowCopySuccessAlert: () => showAlertWithTimeout(dispatch, 'createCopySuccess'),
         onShowRemixSuccessAlert: () => showAlertWithTimeout(dispatch, 'createRemixSuccess'),
         onShowCreatingCopyAlert: () => showAlertWithTimeout(dispatch, 'creatingCopy'),

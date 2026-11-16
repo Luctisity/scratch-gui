@@ -25,7 +25,7 @@
         but fixes [FFx + Safari] [resize window down + scroll to the right] bug.
         width: 100%;
     */
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Nunito", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: $menu-bar-standard-font-size;
     font-weight: bold;
     background-color: $menu-bar-background;
@@ -46,12 +46,20 @@
     opacity: 0;
 }
 .scratch-logo {
-    height:  1.6rem;
+    margin-left: 0.8rem;
+    margin-right: 0.2rem;
+    height:  1.4rem;
     vertical-align: middle;
 }
 
 .scratch-logo.clickable {
     cursor: pointer;
+    scale: 1;
+    transition: scale 0.1s ease;
+}
+.scratch-logo.clickable:hover {
+    scale: 1.06;
+    filter: brightness(1.25);
 }
 
 .menu-bar-item {
