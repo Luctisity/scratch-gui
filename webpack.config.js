@@ -13,44 +13,10 @@ const postcssImport = require('postcss-import');
 const STATIC_PATH = process.env.STATIC_PATH || '/static';
 const APP_NAME = 'TurboWarp';
 
-const root = process.env.ROOT || '';
-if (root.length > 0 && !root.endsWith('/')) {
-    throw new Error('If ROOT is defined, it must have a trailing slash.');
-}
-
-const htmlWebpackPluginCommon = {
-    root: root,
-    meta: JSON.parse(process.env.EXTRA_META || '{}'),
-    APP_NAME
-};
-
-// When this changes, the path for all JS files will change, bypassing any HTTP caches
-const CACHE_EPOCH = 'pentapod';
-
-const base = {
-    mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
-    devtool: process.env.SOURCEMAP || (process.env.NODE_ENV === 'production' ? false : 'cheap-module-source-map'),
-    devServer: {
-        contentBase: path.resolve(__dirname, 'build'),
-        host: '0.0.0.0',
-        disableHostCheck: true,
-        compress: true,
-        port: process.env.PORT || 8601,
-        headers: {
-            // Enable SharedArrayBuffer
-            'Document-Isolation-Policy': 'isolate-and-credentialless'
-        },
-        // allows ROUTING_STYLE=wildcard to work properly
-        historyApiFallback: {
-            rewrites: [
-                {from: /^\/\d+\/?$/, to: '/index.html'},
-                {from: /^\/\d+\/fullscreen\/?$/, to: '/fullscreen.html'},
-                {from: /^\/\d+\/editor\/?$/, to: '/editor.html'},
-                {from: /^\/\d+\/embed\/?$/, to: '/embed.html'},
-                {from: /^\/addons\/?$/, to: '/addons.html'}
-            ]
-        }
-    },
+module.exports = {
+    entry: './src/index.js',
+    mode: 'production',
+    target: 'web',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'turbowarp-gui.js',
