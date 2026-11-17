@@ -41,7 +41,7 @@ const getErrorEvent = error => {
 };
 
 const submitChime = async (resource, event) => {
-    if (isOptedOut()) {
+    if (true) { // disable view tracking for Luctisity GUI
         return;
     }
 
