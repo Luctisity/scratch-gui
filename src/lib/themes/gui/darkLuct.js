@@ -43,6 +43,8 @@ const guiColors = {
     'filter-icon-gray': 'grayscale(100%) brightness(1.7)',
     'filter-tab-icon-gray': 'grayscale(85%) brightness(1.2)',
     'filter-icon-white': 'brightness(0) invert(100%)',
+    'filter-logo': 'none',
+    'filter-logo-hover': 'brightness(1.25)',
 
     'paint-filter-icon-gray': 'brightness(1.7)'
 };

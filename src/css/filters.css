@@ -2,3 +2,5 @@ $filter-icon-black: var(--filter-icon-black);
 $filter-icon-gray: var(--filter-icon-gray);
 $filter-icon-white: var(--filter-icon-white);
 $filter-tab-icon-gray: var(--filter-tab-icon-gray);
+$filter-logo: var(--filter-logo);
+$filter-logo-hover: var(--filter-logo-hover);

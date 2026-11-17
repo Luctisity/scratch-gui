@@ -85,6 +85,8 @@ const guiColors = {
     'filter-icon-gray': 'grayscale(100%)',
     'filter-tab-icon-gray': 'grayscale(100%)',
     'filter-icon-white': 'none',
+    'filter-logo': 'brightness(8)',
+    'filter-logo-hover': 'brightness(8)',
 
     'paint-ui-pane-border': 'var(--ui-black-transparent)',
     'paint-text-primary': 'var(--text-primary)',

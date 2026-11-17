@@ -1,6 +1,7 @@
 @import "../../css/colors.css";
 @import "../../css/units.css";
 @import "../../css/z-index.css";
+@import "../../css/filters.css";
 
 .menu-bar {
     display: flex;
@@ -56,10 +57,11 @@
     cursor: pointer;
     scale: 1;
     transition: scale 0.1s ease;
+    filter: $filter-logo;
 }
 .scratch-logo.clickable:hover {
     scale: 1.06;
-    filter: brightness(1.25);
+    filter: $filter-logo-hover;
 }
 
 .menu-bar-item {
